@@ -1,6 +1,7 @@
 package com.employe.employee.services;
 
 import com.employe.employee.models.Department;
+import com.employe.employee.models.Employee;
 import com.employe.employee.repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> fetchDepartment() {
         return departmentRepository.findAll();
     }
+
+    @Override
+    public List<Employee> fetchEmployeeByDeptId(Long deptId) {
+        Department dept = departmentRepository.findById(deptId).get();
+        return dept.getEmployees();
+
+    }
+
+
 }
