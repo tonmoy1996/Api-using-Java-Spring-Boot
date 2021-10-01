@@ -24,6 +24,7 @@ public class Department {
     private Long deptId;
     @NotBlank(message = "Department Name is Required")
     private String deptName;
+    @Column(name = "code", unique = true, nullable = false)
     private String deptCode;
     private String deptAddress;
 

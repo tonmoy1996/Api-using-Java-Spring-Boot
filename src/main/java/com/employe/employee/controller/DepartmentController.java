@@ -1,5 +1,7 @@
 package com.employe.employee.controller;
 
+import com.employe.employee.error.DeparmentNotFoundException;
+import com.employe.employee.error.EmployeNotFoundException;
 import com.employe.employee.models.Department;
 import com.employe.employee.models.Employee;
 import com.employe.employee.services.DepartmentService;
@@ -28,5 +30,11 @@ public class DepartmentController {
     @GetMapping("/department/{id}")
     public List<Employee> fetchEmployeeByDeptId(@PathVariable("id") Long deptId) {
         return departmentService.fetchEmployeeByDeptId(deptId);
+    }
+
+    @DeleteMapping("/department/{id}")
+    public String deleteDepartment(@PathVariable("id") Long empId) throws DeparmentNotFoundException {
+        departmentService.deleteDepartment(empId);
+        return "Department Deleted Successfully";
     }
 }

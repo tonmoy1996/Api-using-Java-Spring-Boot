@@ -1,5 +1,6 @@
 package com.employe.employee.controller;
 
+import com.employe.employee.error.EmployeNotFoundException;
 import com.employe.employee.models.Employee;
 import com.employe.employee.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee/{id}")
-    public String deleteEmployee(@PathVariable("id") Long empId) {
+    public String deleteEmployee(@PathVariable("id") Long empId) throws EmployeNotFoundException {
         employeeService.deleteEmployee(empId);
         return "Employee Deleted Successfully";
     }

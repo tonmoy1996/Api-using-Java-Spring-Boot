@@ -1,5 +1,6 @@
 package com.employe.employee.services;
 
+import com.employe.employee.error.EmployeNotFoundException;
 import com.employe.employee.models.Department;
 import com.employe.employee.models.Employee;
 import com.employe.employee.repositories.DepartmentRepository;
@@ -43,7 +44,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Long empId) {
+    public void deleteEmployee(Long empId) throws EmployeNotFoundException {
+        Optional<Employee> employee = employeeRepository.findById(empId);
+        if (!employee.isPresent()) {
+            throw new EmployeNotFoundException("Employee Not Found");
+        }
         employeeRepository.deleteById(empId);
     }
 
